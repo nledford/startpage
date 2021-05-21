@@ -41,6 +41,13 @@ impl Component for App {
                         AppRoute::PageNotFound(Permissive(Some(route.route)))
                     })
                 />
+
+                // YOUTUBE VIDEO: https://youtu.be/QOjmvL3e7Lc
+                <div class="video-background">
+                    <div class="video-foreground">
+                      <iframe src="https://www.youtube.com/embed/QOjmvL3e7Lc?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=QOjmvL3e7Lc" frameborder="0" allowfullscreen="true"></iframe>
+                    </div>
+                  </div>
             </>
         }
     }
