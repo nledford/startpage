@@ -11,12 +11,12 @@ impl Component for Home {
         Home {}
     }
 
-    fn change(&mut self, _: Self::Properties) -> ShouldRender {
-        false
-    }
-
     fn update(&mut self, _: Self::Message) -> ShouldRender {
         true
+    }
+
+    fn change(&mut self, _: Self::Properties) -> ShouldRender {
+        false
     }
 
     fn view(&self) -> Html {
@@ -43,8 +43,6 @@ impl Component for Home {
                         { "Learn Yew" }
                     </a>
                 </header>
-
-                <p>{ "Oh, hai" }</p>
             </div>
         }
     }
