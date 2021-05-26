@@ -1,5 +1,10 @@
+html {
+  padding: 0;
+  margin: 0;
+}
+
 body {
-  padding: 10px;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
@@ -12,37 +17,11 @@ code {
   monospace;
 }
 
-nav ul {
-  padding: 0;
-  margin: 0;
-}
-
-nav li {
-  display: block;
-  float: right;
-  padding: 10px;
-}
-
 .app {
   text-align: center;
 }
 
-.app-logo {
-  display: block;
-  pointer-events: none;
-  width: 200px;
-  height: 200px;
-  background: url(./logo.svg);
-  background-size: 200px 200px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .app-logo {
-    animation: app-logo-spin infinite 20s linear;
-  }
-}
-
-.app-header {
+/*.app-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,69 +29,95 @@ nav li {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+}*/
 
 .app-link {
   color: #61dafb;
 }
 
-@keyframes app-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+// MAIN APP CONTAINER #########################################################
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(5px);
+
+  padding: .5rem;
+
+  border-radius: .25rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: flex;
+  flex-wrap: nowrap;
+
+  width: 800px;
+}
+
+nav li {
+  display: inline-block;
+  width: calc(100%/2);
+  text-align: center;
 }
 
 // FULLSCREEN YOUTUBE BACKGROUND ##############################################
 
-.video-background {
-  background: #000;
+.bg-video {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -99;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
 }
 
-.video-foreground,
-.video-background iframe {
+.bg-video #player {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.bg-video .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
 }
 
 @media (min-aspect-ratio: 16/9) {
-  .video-foreground {
-    height: 300%;
-    top: -100%;
+  .bg-video #player {
+    //height: 300%;
+    //top: -100%;
+    height: 56.25vw;
   }
 }
 
 @media (max-aspect-ratio: 16/9) {
-  .video-foreground {
-    width: 300%;
-    left: -100%;
-  }
-}
-
-@media all and (max-width: 600px) {
-  .vid-info {
-    width: 50%;
-    padding: .5rem;
-  }
-  .vid-info h1 {
-    margin-bottom: .2rem;
-  }
-}
-
-@media all and (max-width: 500px) {
-  .vid-info .acronym {
-    display: none;
+  .bg-video #player {
+    //width: 300%;
+    //left: -100%;
+    width: 177.78vh;
   }
 }
