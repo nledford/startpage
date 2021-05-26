@@ -16,38 +16,41 @@ impl Component for App {
         App {}
     }
 
-    fn change(&mut self, _: Self::Properties) -> ShouldRender {
-        false
-    }
-
     fn update(&mut self, _: Self::Message) -> ShouldRender {
         true
+    }
+
+    fn change(&mut self, _: Self::Properties) -> ShouldRender {
+        false
     }
 
     fn view(&self) -> Html {
         html! {
             <>
-                <Nav />
-                <Router<AppRoute, ()>
-                    render = Router::render(|switch: AppRoute | {
-                        match switch {
-                            AppRoute::Home => html!{ <Home /> },
-                            AppRoute::About => html!{ <About /> },
-                            AppRoute::PageNotFound(Permissive(None)) => html!{"Page not found"},
-                            AppRoute::PageNotFound(Permissive(Some(missed_route))) => html!{format!("Page '{}' not found", missed_route)}
-                        }
-                    } )
-                    redirect = Router::redirect(|route: Route<()>| {
-                        AppRoute::PageNotFound(Permissive(Some(route.route)))
-                    })
-                />
+                <main>
+                    <div class="wrapper">
+                    <Nav />
+                    <Router<AppRoute, ()>
+                        render = Router::render(|switch: AppRoute | {
+                            match switch {
+                                AppRoute::Home => html!{ <Home /> },
+                                AppRoute::About => html!{ <About /> },
+                                AppRoute::PageNotFound(Permissive(None)) => html!{"Page not found"},
+                                AppRoute::PageNotFound(Permissive(Some(missed_route))) => html!{format!("Page '{}' not found", missed_route)}
+                            }
+                        } )
+                        redirect = Router::redirect(|route: Route<()>| {
+                            AppRoute::PageNotFound(Permissive(Some(route.route)))
+                        })
+                    />
+                    </div>
+                </main>
 
                 // YOUTUBE VIDEO: https://youtu.be/QOjmvL3e7Lc
-                <div class="video-background">
-                    <div class="video-foreground">
-                      <iframe src="https://www.youtube.com/embed/QOjmvL3e7Lc?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=QOjmvL3e7Lc" frameborder="0" allowfullscreen="true"></iframe>
-                    </div>
-                  </div>
+                <div class="bg-video">
+                  <div class="overlay"></div>
+                  <div id="player"></div>
+                </div>
             </>
         }
     }
